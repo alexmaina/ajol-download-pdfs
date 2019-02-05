@@ -24,24 +24,14 @@ $query1 = "SELECT id,doi FROM citation1 where id between 2045 and 2541";
 		
 	}
 
-		#loop through the arrays and extract the key
-
-		echo '<pre>';
-			print_r($array);
-			print_r($array2);
-			print_r(array_combine($array2,$array));
-		echo '</pre>';
-
 //combine array 2 and array to create an array $c whose $key is the pdf number.
 //This is important to ensure tha pdfs are not overwritten and that pdf numbering starts
 //from the last inserted pdf even if running of the script was interrupted and was started again. 
 $c = array_combine($array2,$array);
 
-
+#loop through the arrays and extract the key
 foreach($c as $key => $value){
-		echo $value . '<br>';
-    
-    #loop through the key and create pdfs named on the basis of the key
+#loop through the key and create pdfs named on the basis of the key
 			for ($x = 0; $x <= $key; $x++) {
     				//echo "The number is: $x <br>";
 				$path = "/var/www/pdf2/$key.pdf";
