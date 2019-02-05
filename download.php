@@ -6,7 +6,8 @@
 
 require 'data.php';
 $con = dbConnect();
-##query tabel
+##query citations table and extract urls
+##An example of a downloadable url: https://www.ajol.info/index.php/ajcem/article/view/7450/13700
 $query1 = "SELECT id,doi FROM citation1 where id between 2045 and 2541";
 	 $sql=$con->prepare($query1);
 		$sql->execute();
@@ -16,6 +17,8 @@ $query1 = "SELECT id,doi FROM citation1 where id between 2045 and 2541";
 		$url = $row['doi'];
 		$id = $row['id'];
 		#change the urls from view to download
+		##for example change this url: https://www.ajol.info/index.php/ajcem/article/view/7450/13700
+		##to this url: https://www.ajol.info/index.php/ajcem/article/Download/7450/13700
 		$url1 = str_replace('view','download',$url);
 		//echo $url1.'<br>';
 		#store the urls in an array
