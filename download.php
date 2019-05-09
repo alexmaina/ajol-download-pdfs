@@ -53,7 +53,7 @@ foreach($c as $key => $value){
     			}
 		//insert pdf data into table citation_pdf
 		$query2 = "INSERT INTO citation_pdf(citation_id,fulltext_link) VALUES(:key,:path)";
-		 $sql=$con->prepare($query2);
+		$sql=$con->prepare($query2);
 		$sql->execute(array(
 				':key' => $key,
 				':path' => $path
