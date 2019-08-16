@@ -9,7 +9,7 @@ $con = dbConnect();
 ##query citations table and extract urls
 ##An example of a downloadable url: https://www.ajol.info/index.php/ajcem/article/view/7450/13700
 $query1 = "SELECT id,doi FROM citation1 where id between 2045 and 2541";
-	 $sql=$con->prepare($query1);
+	$sql=$con->prepare($query1);
 		$sql->execute();
 	$sql->SetFetchMode(PDO::FETCH_ASSOC);
 #loop through results
@@ -35,26 +35,25 @@ $c = array_combine($array2,$array);
 #loop through the arrays and extract the key
 foreach($c as $key => $value){
 #loop through the key and create pdfs named on the basis of the key
-			for ($x = 0; $x <= $key; $x++) {
-    				//echo "The number is: $x <br>";
-				$path = "/var/www/pdf2/$key.pdf";
-			} 
-			
-			$ch = curl_init($value);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_REFERER,$value);
-			$data = curl_exec($ch);
-			curl_close($ch);
-			$result = file_put_contents($path, $data);
-			if(!$result){
-            			echo "error";
-    			}else{
-            			echo "success";
-    			}
+	for ($x = 0; $x <= $key; $x++) {
+    	//echo "The number is: $x <br>";
+		$path = "/var/www/pdf2/$key.pdf";
+	} 
+	$ch = curl_init($value);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_REFERER,$value);
+	$data = curl_exec($ch);
+	curl_close($ch);
+	$result = file_put_contents($path, $data);
+	if(!$result){
+    	echo "error";
+    }else{
+        echo "success";
+    }
 		//insert pdf data into table citation_pdf
-		$query2 = "INSERT INTO citation_pdf(citation_id,fulltext_link) VALUES(:key,:path)";
-		$sql=$con->prepare($query2);
-		$sql->execute(array(
+	$query2 = "INSERT INTO citation_pdf(citation_id,fulltext_link) VALUES(:key,:path)";
+	$sql=$con->prepare($query2);
+	$sql->execute(array(
 				':key' => $key,
 				':path' => $path
 				));
