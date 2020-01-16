@@ -4,6 +4,9 @@
 #https://stackoverflow.com/questions/15076323/how-to-download-this-pdf-file-using-php
 #This is how pdfs were downloaded for the afroscholar project
 
+#Written by: Alex Maina
+#date: 06-02-2019
+
 require 'data.php';
 $con = dbConnect();
 ##query citations table and extract urls
