@@ -5,6 +5,7 @@
 #This is how pdfs were downloaded for the afroscholar project
 
 #Written by: Alex Maina
+//Alex Maina - Librarian. Kenya Medical Research Institute-Kilifi
 #date: 06-02-2019
 
 require 'data.php';
